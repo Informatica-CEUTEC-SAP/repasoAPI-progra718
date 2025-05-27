@@ -1,7 +1,8 @@
-#region Step 1: Configuration Setup
-
+using Microsoft.EntityFrameworkCore;
+using repasoAPI.Data;
 using repasoAPI.Services;
 
+#region Step 1: Configuration Setup
 var builder = WebApplication.CreateBuilder(args);
 #endregion Step 1: Configuration Setup
     
@@ -26,6 +27,9 @@ builder.Services.AddScoped<IEstudianteService, EstudianteService>();
 #endregion Step2.1: Add services to the DI container.
     
 #region Step2.2: Add database context
+
+builder.Services.AddDbContextFactory<DbContextEstudiante>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 #endregion Step2.2: Add database context
 #endregion Step2: Service Registration
