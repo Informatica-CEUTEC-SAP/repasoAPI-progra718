@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using repasoAPI.Data;
+using repasoAPI.Repositorio;
 using repasoAPI.Services;
 
 #region Step 1: Configuration Setup
@@ -22,6 +23,10 @@ builder.Services.AddSwaggerGen(options =>
 // Transient: Se crea una nueva instancia cada vez que se solicita.
 // Singleton: Se crea una única instancia para toda la aplicación.
 
+//Registro el repositorio genérico para las entidadesq
+builder.Services.AddScoped(typeof(IRepasoRepository<>), typeof(RepasoRepository<>));
+
+// Registro de los servicios
 builder.Services.AddScoped<IEstudianteService, EstudianteService>();
 
 #endregion Step2.1: Add services to the DI container.

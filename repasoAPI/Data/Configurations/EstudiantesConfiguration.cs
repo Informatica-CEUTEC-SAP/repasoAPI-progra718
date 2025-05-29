@@ -6,6 +6,7 @@ namespace repasoAPI.Data.Configurations;
 
 public class EstudiantesConfiguration: IEntityTypeConfiguration<Estudiante>
 {
+    //CONFIG PostgresSQL
     public void Configure(EntityTypeBuilder<Estudiante> builder)
     {
         builder.ToTable("Estudiantes");
@@ -15,4 +16,11 @@ public class EstudiantesConfiguration: IEntityTypeConfiguration<Estudiante>
             .IsRequired()
             .HasColumnType("date");
     }
+    
+    //CONFIG SQL Server
+    
+    
+    //CONFIG MySQL
+    
+    //CONFIG MariaDB
 }
