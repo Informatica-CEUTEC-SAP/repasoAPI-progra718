@@ -1,3 +1,4 @@
+using Mapster;
 using repasoAPI.DTOs.Request;
 using repasoAPI.DTOs.Response;
 using repasoAPI.Models;
@@ -21,22 +22,7 @@ public class EstudianteService: IEstudianteService
     public async Task<List<EstudianteResponse>> GetAllAsync()
     {
         var estudiantes = await estudianteRepository.GetAllAsync();
-        //if
-        //for
-        // comparaciones
-        // modificar
-        var response = estudiantes.Select(e => new EstudianteResponse
-        {
-            Id = e.Id,
-            Nombre = e.Nombre,
-            Apellido = e.Apellido,
-            FechaNacimiento = e.FechaNacimiento,
-            Correo = e.Correo,
-            Telefono = e.Telefono,
-            Direccion = e.Direccion
-        }).ToList();
-        
-        return response;
+        return estudiantes.Adapt<List<EstudianteResponse>>();
     }
 
     public async Task<EstudianteResponse> GetByIdAsync(Guid id)
